@@ -5,4 +5,7 @@
 + 面向对象思想进行DOM编程
 + javaScript高级语法
 + javaScript兼容性方案
++ 熟练jquery操作dom
++ 熟练使用和编写jquery插件
 + 应对业务编程能力
++ 团队合作开发流程
