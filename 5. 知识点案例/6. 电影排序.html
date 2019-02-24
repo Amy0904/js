@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影排序</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        table {
+            border: 1px solid #000000;
+            border-collapse: collapse;
+            margin: 10px auto;
+        }
+        td,th {
+            border: 2px solid #000000;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<table id="movie"></table>
+
+<script>
+
+    console.time("timer");
+
+    (function(){
+
+        //电影海报
+        var movieHead = ["影片", "主演", "导演", "类别", "上映时间"];
+        var movie = [
+            {
+                img: "images/qiannvyouhun.jpg",
+                name: "情女幽魂",
+                protagonist: "张国荣",
+                direct: "程小东",
+                category: "惊悚",
+                time: "1987年7月18日"
+            },
+            {
+                img: "images/bianxingjingang.jpg",
+                name: "变形金刚",
+                protagonist: "希亚.拉博夫",
+                direct: "迈克尔.贝",
+                category: "动作",
+                time: "2007年7月3日"
+            },
+            {
+                img: "images/dahuaxiyou.jpg",
+                name: "大话西游",
+                protagonist: "周星驰",
+                direct: "刘镇伟",
+                category: "爱情",
+                time: "2014年10月24日"
+            }
+        ];
+        //第一步: 分析属性和方法，写构造函数
+        function MovieTable(tabel){
+            this.table = table;
+        }
+        //渲染
+        MovieTable.prototype.render = function(){
+            this.renderHead();
+            this.renderBody();
+            this.mySort();
+        };
+        MovieTable.prototype.renderHead = function(){
+            var thead = document.createElement("thead");
+            var trHead = document.createElement("tr");
+            var sortName = ["name", "protagonist", "direct", "category", "time"];
+            movieHead.forEach(function(ele,index){
+                var th = document.createElement("th");
+                th.innerText = ele;
+                th.setAttribute("flag", sortName[index]);
+                trHead.appendChild(th);
+            });
+            thead.appendChild(trHead);
+            table.appendChild(thead);
+        };
+        MovieTable.prototype.renderBody = function(){
+            var tbd = document.getElementById("tbd");
+            if(tbd){
+                console.log(this.table);
+                this.table.removeChild(tbd);
+            }
+            var tbody = document.createElement("tbody");
+            tbody.id = "tbd";
+            movie.forEach(function(ele){
+                        var tr = document.createElement("tr");
+                        for(var key in ele){
+                            if(key == "img" || key == "name"){
+//                        tr.appendChild(td);
+                                if(tdImg){
+                                    tdImg.parentNode.removeChild(tdImg);
+                                }
+                                var tdImg = document.createElement("td");
+                                var img = document.createElement("img");
+                                img.src = ele.img;
+                                var text = document.createTextNode(ele[key])
+                                var br = document.createElement("br");
+                                tdImg.appendChild(img);
+                                tdImg.appendChild(br);
+                                tdImg.appendChild(text);
+                                tr.appendChild(tdImg);
+                            }else{
+                                var td = document.createElement("td");
+                                td.innerText = ele[key];
+                                tr.appendChild(td);
+                            }
+                }
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+
+        };
+        MovieTable.prototype.mySort = function(){
+            var ths = document.getElementsByTagName("th");
+            var i = 0, len = ths.length;
+            function click(para) {
+                return function(obj1, obj2){
+                    if(obj1[para] > obj2[para]){
+                        return 1;
+                    }else if(obj1[para] == obj2[para]){
+                        return 0;
+                    }else{
+                        return -1;
+                    }
+                }
+            }
+
+            var that = this;
+            for(; i < len; i++){
+                ths[i].onclick =function() {
+                    var flag = this.getAttribute("flag");
+                    var paraSort = click(flag);
+                    movie.sort(paraSort);
+                    that.renderBody();
+
+                }
+            }
+
+        }
+
+
+    window.MovieTable = MovieTable;
+    }());
+
+    var table = document.getElementById("movie");
+    var mTable = new MovieTable(table);
+    mTable.render();
+
+    console.timeEnd("timer");
+</script>
+</body>
+</html>

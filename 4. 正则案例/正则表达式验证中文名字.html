@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+请输入你的名字: <input type="text" id="name"/>
+
+
+<script>
+    var input = document.getElementById("name");
+    input.onblur = function(){
+        var reg = /^[\u4e00-\u9fa5]{2,6}$/;
+
+        if(reg.test(this.value)){
+            this.style.outline = "1px solid blue";
+        }else {
+            this.style.outline = "1px solid red";
+        }
+
+    }
+</script>
+</body>
+</html>

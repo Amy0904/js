@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    //正则表达式中：g表示全局模式
+    //正则表达式中： i 表示忽略大小写
+    var str="中国移动:10086,中国联通:10010,中国电信:10000";
+    var array = str.match(/\d{5}/g);
+    console.log(array);
+    var str = "123123@xx.com,fangfang@valuedopinions.cn 286669312@qq.com 2、emailenglish@emailenglish.englishtown.com 286669312@qq.com...";
+
+    console.log(str.match(/\w+[@]\w+([.]\w+){1,2}/g));
+
+
+    var str = "2017-11-12";
+    console.log(str.match(/(\d{4})[-](\d{2})[-](\d{2})/g));
+    console.log(RegExp.$3);
+
+    var str="小苏好帅哦,真的是太帅了,帅,就是真帅";
+    str = str.replace(/帅/g, "丑");
+    console.log(str);
+
+    var str = "    哦买噶的   ，  啦啦啦    ";
+    str = str.replace(/\s+/g, "");
+//    str = str.trim();
+    console.log("==="+str+"===");
+
+
+    var str = "Happy, HHHhhhhHHHH";
+    str = str.replace(/[h]/gi, "S");
+    console.log(str);
+
+    var str = "中国移动:10086,中国联通:10010,中国电信:10000";
+//    var array = str.match(/\d{5}/g)
+    var reg = /\d{5}/g;
+//    var array = reg.exec(str);
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));
+
+
+</script>
+</body>
+</html>

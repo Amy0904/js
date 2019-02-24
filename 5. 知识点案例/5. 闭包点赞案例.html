@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        ul li {
+            list-style: none;
+        }
+        ul {
+            position: relative;
+        }
+        li {
+            float: left;
+            width: 200px;
+            height: 220px;
+            border: 1px solid #000000;
+            margin-right: 10px;
+        }
+        li>input {
+            margin-left: 40%;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href="javascript:;"><img src="images/01.jpg" alt=""/></a><br /><input type="button" value="赞(0)"/></li>
+    <li><a href="javascript:;"><img src="images/02.jpg" alt=""/></a><br /><input type="button" value="赞(0)"/></li>
+    <li><a href="javascript:;"><img src="images/03.jpg" alt=""/></a><br /><input type="button" value="赞(0)"/></li>
+    <li><a href="javascript:;"><img src="images/04.jpg" alt=""/></a><br /><input type="button" value="赞(0)"/></li>
+    <li><a href="javascript:;"><img src="images/05.jpg" alt=""/></a><br /><input type="button" value="赞(0)"/></li>
+</ul>
+
+
+<script>
+    var btn = document.getElementsByTagName("input");
+    var len = btn.length, i = 0;
+    for (; i<len; i++){
+        btn[i].onclick = changeValue();
+    }
+
+    function changeValue() {
+        var value = 0
+        return function(){
+            this.value=("赞("+(value+=1)+")");
+        }
+    }
+</script>
+</body>
+</html>

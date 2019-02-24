@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .all {
+            width: 300px;
+            margin: 30px auto;
+        }
+        .strength0 {
+            width: 150px;
+            height: 10px;
+            /*border: 1px solid #000;*/
+        }
+        i {
+            color: gray;
+            font-size: 10px;
+        }
+        .strength1 {
+            width: 50px;
+            height: 10px;
+            background-color: red;
+        }
+        .strength2 {
+            width: 100px;
+            height: 10px;
+            background-color: #ffc018;
+        }
+        .strength3 {
+            width: 150px;
+            height: 10px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="all">
+    <label for="pwd">密码：</label>
+    <input type="text" name="" id="pwd" maxlength="16"/><br/>
+    <i>密码强度：</i>
+    <div class="strength0" id="level"></div>
+</div>
+
+<script>
+    //获取密码标签元素
+    var pwdInpt = document.getElementById("pwd");
+    //输入后鼠标弹起判断值的强度然后显示
+    pwdInpt.onkeyup = function () {
+//        if (this.value.length > 6) {
+//            var lev = getLevel(this.value);
+//            document.getElementById("level").className = "strength" + lev;
+//        }else{
+//            document.getElementById("level").className = "strength0";
+//        }
+        var lev = getLevel(this.value);
+//        this.value.length > 6?document.getElementById("level").className = "strength" + lev : document.getElementById("level").className = "strength0";
+        document.getElementById("level").className = "strength" +((this.value.length > 6)? lev: 0);
+    };
+        //1. 事件为鼠标弹起事件
+        // 2. 根据输入的值判断值的级别，显示相应密码强度
+        //获得级别
+        function getLevel(pwd){
+            var levl = 0;
+            if(/[0-9]/.test(pwd)){
+                levl ++;
+            }
+            if(/[a-z]/.test(pwd)){
+                levl ++;
+            }
+            if(/\W/.test(pwd)){
+                levl ++;
+            }
+            return levl;
+        }
+
+</script>
+</body>
+</html>
