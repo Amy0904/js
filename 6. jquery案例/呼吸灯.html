@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        ul li {
+            list-style: none;
+        }
+        .slider {
+            width: 790px;
+            height: 340px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .slider li {
+            display: none;
+            position: absolute;
+        }
+        .slider li:first-child {
+            display: block;
+        }
+        .arrow {
+            display: none;
+        }
+        .slider:hover .arrow {
+            display: block;
+        }
+        .arrow-left,
+        .arrow-right {
+            font-family: "SimSun", "宋体";
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.2);
+            top: 50%;
+            color: #fff;
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 50px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .arrow-left {
+            left: 0;
+        }
+        .arrow-right {
+            right: 0;
+        }
+    </style>
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+       $(function(){
+           var count = 0;
+        $(".arrow-right").click(function(){
+            count++;
+            if(count == $(".slider>ul>li").length) {
+                count = 0;
+            }
+            $(".slider>ul>li").eq(count).fadeIn().siblings().fadeOut();
+        });
+        $(".arrow-left").click(function(){
+            count--;
+            if(count === -1) {
+                count = $(".slider>ul>li").length - 1;
+            }
+            $(".slider>ul>li").eq(count).fadeIn().siblings().fadeOut();
+        });
+       });
+    </script>
+</head>
+<body>
+    <div class="slider">
+        <ul>
+            <li><a href="#"><img src="images/1.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/2.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/3.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/4.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/5.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/6.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/7.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+        </ul>
+
+
+        <div class="arrow">
+                <span class="arrow-left"> &lt;</span>
+                <span class="arrow-right"> &gt;</span>
+        </div>
+    </div>
+
+</body>
+</html>
